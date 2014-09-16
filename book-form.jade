@@ -6,10 +6,11 @@ block title
 block content
   form(name="add", action="/books", method="post")
     label Title:
-    if book._id
+    if book
+        input(type="text", name="title" value="#{book.title}")
         input(type="text", name="_id" value="#{book._id}" hidden)
-    input(type="text", name="title" value="#{book.title}")
-    if book._id
+
         input(type="submit", value="Update")
     else
+        input(type="text", name="title")
         input(type="submit", value="Add")
