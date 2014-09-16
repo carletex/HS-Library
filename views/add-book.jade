@@ -1,0 +1,10 @@
+extends layout
+
+block title
+  title Add book | HS Library
+
+block content
+  form(name="login", action="/books", method="post")
+    label Title:
+    input(type="text", name="title")
+    input(type="submit", value="Add")

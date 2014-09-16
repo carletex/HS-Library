@@ -1,0 +1,11 @@
+extends layout
+
+block title
+    title Books | HS Library
+block content
+    h1 All books
+    if addedBook
+        p.info #{addedBook} has been added to the Collection!
+    if books
+        each book in books
+            li= book.title

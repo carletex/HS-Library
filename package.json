@@ -1,0 +1,24 @@
+{
+  "name": "HS-Library",
+  "version": "0.0.0",
+  "description": "Keeps track of the books in the HS library",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "todo"
+  },
+  "author": "carletex",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.9.0",
+    "jade": "~1.6.0",
+    "body-parser": "~1.8.1",
+    "monk": "~0.9.0"
+  }
+}
