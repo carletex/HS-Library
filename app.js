@@ -5,7 +5,8 @@ var express = require('express');
 var app = express();
 
 var bodyParser = require('body-parser');
-var db = require('monk')('localhost/library');
+var mongo = require('mongoskin');
+var db = mongo.db('mongodb://localhost/library', {native_parser:true});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,8 +24,8 @@ app.get('/', function(req, res) {
 
 app.get('/books', function(req, res) {
 
-	var books = db.get('books');
-	books.find({}, function(err, result) {
+	var books = db.collection('books');
+	books.find().toArray(function(err, result) {
 		console.log('Result', result);
 		res.render('books', {books: result});
 	});
@@ -33,12 +34,12 @@ app.get('/books', function(req, res) {
 
 app.post('/books', function(req, res) {
 
-	var books = db.get('books');
+	var books = db.collection('books');
 	var title = req.body.title;
 
 	books.insert({title: title}, function() {
-		var books = db.get('books');
-		books.find({}, function(err, result) {
+		var books = db.collection('books');
+		books.find().toArray(function(err, result) {
 			res.render('books', {books: result, addedBook: req.body.title});
 		});
 	});
