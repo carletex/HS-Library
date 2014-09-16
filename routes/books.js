@@ -86,7 +86,7 @@ router.get('/edit/:id', function(req, res) {
 			return;
 		}
 
-		res.render('add-book', {book: result});
+		res.render('book-form', {book: result});
 	});
 
 });
