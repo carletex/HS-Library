@@ -8,4 +8,7 @@ block content
         p.info #{addedBook} has been added to the Collection!
     if books
         each book in books
-            li= book.title
+            li
+                a(href='/books/#{book._id}') #{book.title}
+                a(href='/books/edit/#{book._id}') [edit]
+                a(href='/books/delete/#{book._id}') [delete]
