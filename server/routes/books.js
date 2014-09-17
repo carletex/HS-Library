@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
       return;
     }
 
-    res.render('books', {books: result});
+    res.json(result);
   });
 
 });
@@ -73,7 +73,7 @@ router.get('/:id', function(req, res) {
       return;
     }
 
-    res.render('book', {book: result});
+    res.json(result);
   });
 
 });
