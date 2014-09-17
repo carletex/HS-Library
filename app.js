@@ -21,8 +21,8 @@ app.set('view engine', 'jade');
 
 // Make our db accessible to our router
 app.use(function(req,res,next) {
-	req.db = db;
-	next();
+  req.db = db;
+  next();
 });
 
 app.use('/', routes);
@@ -30,11 +30,11 @@ app.use('/books', books);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 app.listen(8000, function() {
-	console.log('Listening on port 8000...');
+  console.log('Listening on port 8000...');
 });

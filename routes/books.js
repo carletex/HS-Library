@@ -6,101 +6,101 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 
-	var books = req.db.collection('books');
-	books.find().toArray(function(err, result) {
-		if (err) {
-			res.status(500).end();
-			return;
-		}
+  var books = req.db.collection('books');
+  books.find().toArray(function(err, result) {
+    if (err) {
+      res.status(500).end();
+      return;
+    }
 
-		res.render('books', {books: result});
-	});
+    res.render('books', {books: result});
+  });
 
 });
 
 router.get('/add', function(req, res) {
-	res.render('book-form');
+  res.render('book-form');
 });
 
 router.post('/', function(req, res) {
 
-	var books = req.db.collection('books');
-	var id = req.body._id;
-	var title = req.body.title;
-	var shelf = req.body.shelf;
+  var books = req.db.collection('books');
+  var id = req.body._id;
+  var title = req.body.title;
+  var shelf = req.body.shelf;
 
-	if (id){
+  if (id){
 
-		// Update
-		books.updateById(id, {title: title, shelf: shelf}, function(err) {
-			if (err) {
-				res.status(500).end();
-				return;
-			}
+    // Update
+    books.updateById(id, {title: title, shelf: shelf}, function(err) {
+      if (err) {
+        res.status(500).end();
+        return;
+      }
 
-			var books = req.db.collection('books');
-			books.find().toArray(function(err, result) {
-				res.render('books', {books: result, addedBook: req.body.title});
-			});
+      var books = req.db.collection('books');
+      books.find().toArray(function(err, result) {
+        res.render('books', {books: result, addedBook: req.body.title});
+      });
 
-		});
+    });
 
-	} else {
+  } else {
 
-		// Create
-		books.insert({title: title, shelf: shelf}, function(err) {
-			if (err) {
-				res.status(500).end();
-				return;
-			}
+    // Create
+    books.insert({title: title, shelf: shelf}, function(err) {
+      if (err) {
+        res.status(500).end();
+        return;
+      }
 
-			var books = req.db.collection('books');
-			books.find().toArray(function(err, result) {
-				res.render('books', {books: result, addedBook: req.body.title});
-			});
+      var books = req.db.collection('books');
+      books.find().toArray(function(err, result) {
+        res.render('books', {books: result, addedBook: req.body.title});
+      });
 
-		});
+    });
 
-	}
+  }
 
 });
 
 router.get('/:id', function(req, res) {
 
-	req.db.collection('books').findById(req.params.id, function(err, result) {
-		if (err) {
-			res.status(500).end();
-			return;
-		}
+  req.db.collection('books').findById(req.params.id, function(err, result) {
+    if (err) {
+      res.status(500).end();
+      return;
+    }
 
-		res.render('book', {book: result, bookJSON: JSON.stringify(result)});
-	});
+    res.render('book', {book: result});
+  });
 
 });
 
 router.get('/edit/:id', function(req, res) {
 
-	req.db.collection('books').findById(req.params.id, function(err, result) {
-		if (err) {
-			res.status(500).end();
-			return;
-		}
+  req.db.collection('books').findById(req.params.id, function(err, result) {
+    if (err) {
+      res.status(500).end();
+      return;
+    }
 
-		res.render('book-form', {book: result});
-	});
+    res.render('book-form', {book: result});
+  });
 
 });
 
 router.get('/delete/:id', function(req, res) {
 
-	req.db.collection('books').removeById(req.params.id, function(err) {
-		if (err) {
-			res.status(500).end();
-			return;
-		}
+  req.db.collection('books').removeById(req.params.id, function(err) {
+    if (err) {
+      res.status(500).end();
+      return;
+    }
 
-		res.redirect('/books');
-	});
+    res.redirect('/books');
+  });
 
 });
 

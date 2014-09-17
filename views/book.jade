@@ -1,7 +1,10 @@
 extends layout
 
 block title
-    title #{book.title} | HS Library
+  title #{book.title} | HS Library
 block content
-    h1 #{book.title}
-    p #{bookJSON}
+  h1 #{book.title}
+  ul
+    for val, key in book
+      if key !== '_id'
+        li= key + ': ' + val
