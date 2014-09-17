@@ -19,8 +19,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/add', function(req, res) {
-	console.log('here');
-	res.render('add-book');
+	res.render('book-form');
 });
 
 router.post('/', function(req, res) {
@@ -28,11 +27,12 @@ router.post('/', function(req, res) {
 	var books = req.db.collection('books');
 	var id = req.body._id;
 	var title = req.body.title;
+	var shelf = req.body.shelf;
 
 	if (id){
 
 		// Update
-		books.updateById(id, {title: title}, function(err) {
+		books.updateById(id, {title: title, shelf: shelf}, function(err) {
 			if (err) {
 				res.status(500).end();
 				return;
@@ -48,7 +48,7 @@ router.post('/', function(req, res) {
 	} else {
 
 		// Create
-		books.insert({title: title}, function(err) {
+		books.insert({title: title, shelf: shelf}, function(err) {
 			if (err) {
 				res.status(500).end();
 				return;
