@@ -1,3 +1,5 @@
-div(ng-controller="bookController")
+div(ng-controller="BookListController")
   ul
-    li(ng-repeat="book in books") {{ book }}
+    li(ng-repeat="book in books")
+      a(href="#/books/{{ book._id }}") {{ book.title }}
+      input(type="submit" value="Delete" ng-click="delBook(book._id)")
