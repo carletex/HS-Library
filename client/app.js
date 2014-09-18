@@ -5,9 +5,6 @@ var app = angular.module('libraryApp', ['ngRoute']);
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: '/partials/index'
-    })
-    .when('/books', {
       templateUrl: '/partials/book-list',
       controller: 'BookListController'
     })
@@ -19,11 +16,14 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/partials/book-single',
       controller: 'BookInfoController'
     })
+    .when('/books/edit/:id', {
+      templateUrl: '/partials/book-form',
+      controller: 'BookEditController'
+    })
     .otherwise({
       redirectTo: '/'
     });
 }]);
-
 
 app.factory('BookFactory', function($http) {
   var factory = {};
