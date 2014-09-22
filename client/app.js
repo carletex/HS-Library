@@ -141,26 +141,29 @@ controllers.BookEditController = function($scope, $routeParams, BookFactory) {
       console.log('Something went wrong', err);
       return;
     }
+
     $scope.editBookId = data._id;
     $scope.editBookTitle = data.title;
     $scope.editBookShelf = data.shelf;
-  });
 
-  $scope.uptateBook = function() {
+    $scope.uptateBook = function() {
 
-    var editedBook = {
-      id: $scope.editBookId,
-      title: $scope.editBookTitle,
-      shelf: $scope.editBookShelf
+      var editedBook = {
+        id: $scope.editBookId,
+        title: $scope.editBookTitle,
+        shelf: $scope.editBookShelf
+      };
+
+      BookFactory.updateBook(editedBook, function(err) {
+        if (err) {
+          console.log('Something went wrong', err);
+          return;
+        }
+      });
+
     };
 
-    BookFactory.updateBook(editedBook, function(err) {
-      if (err) {
-        console.log('Something went wrong', err);
-        return;
-      }
-    });
-  };
+  });
 
 };
 
