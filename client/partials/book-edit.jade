@@ -1,0 +1,7 @@
+form(ng-submit="uptateBook()" ng-controller="BookEditController")
+  label Title:
+  input(type="text", name="title" ng-model="editBookTitle")
+  label Shelf:
+  input(type="text", name="shelf" ng-model="editBookShelf")
+  input(type="text", name="shelf" ng-model="editBookId" value="bookId" hidden)
+  input(type="submit", value="Update")

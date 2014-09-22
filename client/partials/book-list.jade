@@ -2,4 +2,5 @@ input(type="text" ng-model="filterName")
 ul(ng-controller="BookListController")
   li(ng-repeat="book in books | filter:filterName")
     a(href="#/books/{{ book._id }}") {{ book.title }}
+    a(href="#/books/edit/{{ book._id }}")  [Edit]
     input(type="submit" value="Delete" ng-click="delBook(book._id)")

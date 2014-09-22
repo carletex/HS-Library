@@ -9,7 +9,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'BookListController'
     })
     .when('/books/add', {
-      templateUrl: '/partials/book-form',
+      templateUrl: '/partials/book-add',
       controller: 'BookAddController'
     })
     .when('/books/:id', {
@@ -17,7 +17,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'BookInfoController'
     })
     .when('/books/edit/:id', {
-      templateUrl: '/partials/book-form',
+      templateUrl: '/partials/book-edit',
       controller: 'BookEditController'
     })
     .otherwise({
@@ -50,6 +50,16 @@ app.factory('BookFactory', function($http) {
 
   factory.addBook = function(book, cb) {
     $http.post('/api/books', book)
+      .success(function(data, status) {
+        cb(null, status);
+      })
+      .error(function(data, status) {
+        cb(status);
+      });
+  };
+
+  factory.updateBook = function(book, cb) {
+    $http.put('/api/books/' + book.id, book)
       .success(function(data, status) {
         cb(null, status);
       })
@@ -115,6 +125,36 @@ controllers.BookAddController = function($scope, BookFactory) {
     };
 
     BookFactory.addBook(newBook, function(err) {
+      if (err) {
+        console.log('Something went wrong', err);
+        return;
+      }
+    });
+  };
+
+};
+
+controllers.BookEditController = function($scope, $routeParams, BookFactory) {
+
+  BookFactory.getBook($routeParams.id, function(err, data) {
+    if (err) {
+      console.log('Something went wrong', err);
+      return;
+    }
+    $scope.editBookId = data._id;
+    $scope.editBookTitle = data.title;
+    $scope.editBookShelf = data.shelf;
+  });
+
+  $scope.uptateBook = function() {
+
+    var editedBook = {
+      id: $scope.editBookId,
+      title: $scope.editBookTitle,
+      shelf: $scope.editBookShelf
+    };
+
+    BookFactory.updateBook(editedBook, function(err) {
       if (err) {
         console.log('Something went wrong', err);
         return;
