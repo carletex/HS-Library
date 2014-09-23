@@ -4,17 +4,17 @@ input(type="text" ng-model="filterName")
 table.book-list(ng-controller="BookListController")
   thead
     tr
+      th.edit
+      th.delete
       th.title Book title
-      th
-      th
   tbody
     tr(ng-repeat="book in books | filter:filterName")
-      td.title
-        a(href="#/books/{{ book._id }}") {{ book.title }}
       td.edit
         a(href="#/books/edit/{{ book._id }}")
           i.fi-page-edit(title="Edit Book")
       td.delete
         a(ng-really-message="Are you sure you want to delete?" ng-really-click="delBook(book._id)")
           i.fi-x(title="Delete Book")
+      td
+        a(href="#/books/{{ book._id }}") {{ book.title }}
 
