@@ -84,6 +84,7 @@ app.factory('BookFactory', function($http) {
 var controllers = {};
 
 controllers.BookListController = function($scope, BookFactory) {
+
   BookFactory.getBooks(function(err, data) {
     if (err) {
       console.log('Something went wrong', err);
@@ -106,6 +107,7 @@ controllers.BookListController = function($scope, BookFactory) {
 };
 
 controllers.BookInfoController = function($scope, $routeParams, BookFactory) {
+
   BookFactory.getBook($routeParams.id, function(err, data) {
     if (err) {
       console.log('Something went wrong', err);
@@ -113,6 +115,7 @@ controllers.BookInfoController = function($scope, $routeParams, BookFactory) {
     }
     $scope.book = data;
   });
+
 };
 
 controllers.BookAddController = function($scope, BookFactory) {
