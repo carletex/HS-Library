@@ -1,7 +1,9 @@
-form(ng-submit="uptateBook()" ng-controller="BookEditController")
-  label Title:
-  input(type="text", name="title" ng-model="editBookTitle")
-  label Shelf:
-  input(type="text", name="shelf" ng-model="editBookShelf")
-  input(type="text", name="shelf" ng-model="editBookId" hidden)
-  input(type="submit", value="Update")
+h1 {{ bookTitle }}:
+div.medium-6
+  form(ng-submit="uptateBook()" ng-controller="BookEditController")
+    label Title:
+    input(type="text", name="title" ng-model="bookTitle")
+    label Shelf:
+    input(type="text", name="shelf" ng-model="bookShelf")
+    input(type="hidden", name="shelf" ng-model="bookId")
+    input.button(type="submit", value="Update")

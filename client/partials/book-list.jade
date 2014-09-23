@@ -1,6 +1,19 @@
+h1 Search a book:
 input(type="text" ng-model="filterName")
-ul(ng-controller="BookListController")
-  li(ng-repeat="book in books | filter:filterName")
-    a(href="#/books/{{ book._id }}") {{ book.title }}
-    a(href="#/books/edit/{{ book._id }}")  [Edit]
-    input(type="submit" value="Delete" ng-click="delBook(book._id)")
+
+table.book-list(ng-controller="BookListController")
+  thead
+    tr
+      th.title Book title
+      th
+      th
+  tbody
+    tr(ng-repeat="book in books | filter:filterName")
+      td.title
+        a(href="#/books/{{ book._id }}") {{ book.title }}
+      td.edit
+        a(href="#/books/edit/{{ book._id }}")
+          i.fi-page-edit(title="Edit Book")
+      td.delete
+        a(ng-click="delBook(book._id)")
+          i.fi-x(title="Delete Book")

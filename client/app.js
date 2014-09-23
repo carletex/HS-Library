@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('libraryApp', ['ngRoute']);
+var app = angular.module('libraryApp', ['ngRoute', 'mm.foundation']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -83,6 +83,10 @@ app.factory('BookFactory', function($http) {
 
 var controllers = {};
 
+controllers.TopBarDemoCtrl = function($scope) {
+
+};
+
 controllers.BookListController = function($scope, BookFactory) {
 
   BookFactory.getBooks(function(err, data) {
@@ -145,16 +149,16 @@ controllers.BookEditController = function($scope, $routeParams, BookFactory) {
       return;
     }
 
-    $scope.editBookId = data._id;
-    $scope.editBookTitle = data.title;
-    $scope.editBookShelf = data.shelf;
+    $scope.bookId = data._id;
+    $scope.bookTitle = data.title;
+    $scope.bookShelf = data.shelf;
 
     $scope.uptateBook = function() {
 
       var editedBook = {
-        id: $scope.editBookId,
-        title: $scope.editBookTitle,
-        shelf: $scope.editBookShelf
+        id: $scope.bookId,
+        title: $scope.bookTitle,
+        shelf: $scope.bookShelf
       };
 
       BookFactory.updateBook(editedBook, function(err) {
