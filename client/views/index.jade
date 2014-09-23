@@ -15,31 +15,21 @@ html(ng-app="libraryApp")
             li.name
               h1
                 a(href="#") My Library
-            li(class="toggle-topbar menu-icon")
-              a(href="#")
-                span
+            li(toggle-top-bar class="menu-icon")
+                a(href="#")
+                  span Menu
 
-          section.top-bar-section.row
+          top-bar-section
             ul.right
-              li: a(href="#/") Home
-              li: a(href="#/books/add") Add Book
-            li(class="toggle-topbar menu-icon")
-              a(href="#")
-                span Menu
-
+              li
+                a(href="#/") Home
+              li
+                a(href="#/books/add") Add Book
 
     div.row
       div.small-12.columns(ng-view)
 
-    //- script(src="/js/jquery.js")
-    //- script(src="/js/foundation.js")
-    //- script(src="/js/foundation.topbar.js")
-    //- script(src="/js/foundation.alert.js")
-    //- script.
-    //-   $(document).foundation();
-
     script(src="/js/angular.min.js")
     script(src="/js/angular-route.min.js")
     script(src="/js/mm-foundation-0.3.0.min.js")
-
     script(src="/app.js")
