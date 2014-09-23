@@ -81,12 +81,21 @@ app.factory('BookFactory', function($http) {
   return factory;
 });
 
+app.directive('ngReallyClick', [function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      element.bind('click', function() {
+        var message = attrs.ngReallyMessage;
+        if (message && confirm(message)) {
+            scope.$apply(attrs.ngReallyClick);
+        }
+      });
+    }
+  }
+}]);
+
 var controllers = {};
-
-controllers.TopBarDemoCtrl = function($scope) {
-
-};
-
 
 controllers.BookListController = function($scope, BookFactory) {
 
@@ -174,5 +183,11 @@ controllers.BookEditController = function($scope, $routeParams, BookFactory) {
   });
 
 };
+
+// Foundation JS
+controllers.TopBarDemoCtrl = function() {
+
+};
+
 
 app.controller(controllers);

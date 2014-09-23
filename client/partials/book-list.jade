@@ -15,5 +15,6 @@ table.book-list(ng-controller="BookListController")
         a(href="#/books/edit/{{ book._id }}")
           i.fi-page-edit(title="Edit Book")
       td.delete
-        a(ng-click="delBook(book._id)")
+        a(ng-really-message="Are you sure you want to delete?" ng-really-click="delBook(book._id)")
           i.fi-x(title="Delete Book")
+
