@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(__dirname + '/client'));
-// app.locals.basedir = __dirname + '/client/views';
 
 app.set('views', './client');
 app.set('view engine', 'jade');

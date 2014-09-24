@@ -19,6 +19,7 @@
     "express": "~4.9.0",
     "jade": "~1.6.0",
     "body-parser": "~1.8.1",
-    "mongoskin": "~1.4.4"
+    "mongoskin": "~1.4.4",
+    "satellizer": "~0.6.4"
   }
 }

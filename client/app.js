@@ -189,5 +189,4 @@ controllers.TopBarDemoCtrl = function() {
 
 };
 
-
 app.controller(controllers);

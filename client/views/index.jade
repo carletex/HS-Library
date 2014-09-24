@@ -8,9 +8,9 @@ html(ng-app="libraryApp")
     link(rel="stylesheet" href="/css/foundation.min.css")
     link(rel="stylesheet" href="/css/icons/foundation-icons.css")
     link(rel='stylesheet' href='/css/app.css')
-  body
+  body(ng-controller="TopBarDemoCtrl")
     div.contain-to-grid
-      div(ng-controller="TopBarDemoCtrl")
+      div
         top-bar
           ul.title-area
             li.name
