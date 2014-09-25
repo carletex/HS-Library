@@ -132,7 +132,7 @@ controllers.BookInfoController = function($scope, $routeParams, BookFactory) {
 
 };
 
-controllers.BookAddController = function($scope, BookFactory) {
+controllers.BookAddController = function($scope, $location, BookFactory) {
 
   $scope.addBook = function() {
 
@@ -146,6 +146,16 @@ controllers.BookAddController = function($scope, BookFactory) {
         console.log('Something went wrong', err);
         return;
       }
+
+      // SUCCESS
+      var msg = {
+        type: 'success',
+        text: newBook.title + ' has been added to the library.'
+      };
+
+      $scope.$emit('newMsg', msg);
+      $location.path('/');
+
     });
   };
 
@@ -181,6 +191,21 @@ controllers.BookEditController = function($scope, $routeParams, BookFactory) {
     };
 
   });
+
+};
+
+controllers.MsgController = function($scope, $timeout) {
+
+  $scope.$on('newMsg', function(event, msg) {
+    $scope.msg = msg;
+
+    $timeout(function() {
+      $scope.msg = null;
+    }, 2000);
+
+  });
+
+
 
 };
 
