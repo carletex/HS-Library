@@ -115,6 +115,15 @@ controllers.BookListController = function($scope, BookFactory) {
       }
 
       $scope.books = data;
+
+      // SUCCESS
+      var msg = {
+        type: 'success',
+        text: 'The book has been deleted'
+      };
+
+      $scope.$emit('newMsg', msg);
+
     });
   };
 
@@ -187,6 +196,15 @@ controllers.BookEditController = function($scope, $routeParams, BookFactory) {
           return;
         }
       });
+
+      // SUCCESS
+      var msg = {
+        type: 'success',
+        text: editedBook.title + ' has been updated.'
+      };
+
+      $scope.$emit('newMsg', msg);
+      $location.path('/');
 
     };
 
